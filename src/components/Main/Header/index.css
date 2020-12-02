@@ -1,0 +1,28 @@
+.header-main{
+    /* position: fixed;
+    z-index: 1;
+    width: 100%;
+    vertical-align: center; */
+    background-color: #eb7100;
+   
+}
+.logo-main{
+    width: 9%;
+    float: left;
+}
+.menu-main{
+    width: 70%;
+    float: left;
+    background: #eb7100 !important;
+   font-size: 1.6rem;
+    font-weight: 600;
+    color: #fff !important;
+}
+.search-main{
+    width: 75%;
+    margin-top: 20px;
+    
+}
+.ant-dropdown-link{
+    color: #fff;
+}
