@@ -1,77 +1,72 @@
-import React from 'react'
-import { Form, Input, Button, Checkbox, Image } from 'antd';
-import './index.css'
+import { Button, Carousel, Col, Divider, Form, Input, Row } from "antd";
+import React from "react";
+import "./index.css";
 const Login = () => {
-    const layout = {
-        labelCol: {
-          span: 5,
-        },
-        wrapperCol: {
-          span: 16,
-        },
-      };
-      const tailLayout = {
-        wrapperCol: {
-          offset: 8,
-          span: 6,
-        },
-      };
-      const onFinish = (values) => {
-        console.log('Success:', values);
-      };
-    
-      const onFinishFailed = (errorInfo) => {
-        console.log('Failed:', errorInfo);
-      };
-    return (
-        <div className='login-form'>
-            <div style={{width:'100%',textAlign:'center',margin:'10px 0 10px 0 '}}><Image width='10%' src='https://i.pinimg.com/736x/4f/e1/f8/4fe1f8492f260526521c11b40ff1487b.jpg'/></div>
-            
-              <Form
-      {...layout}
-      name="basic"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your username!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
+  const onFinish = (values) => {
+    console.log("Success:", values);
+  };
 
-    
+ 
+  return (
+    <>
+      <Row className='container-Login'>
+        <Col xs={0} md={8}>
+          <Carousel className='slide-login' autoplay  effect="scrollx">
+            <div>
+              <h3 className='contentStyle '>1</h3>
+            </div>
+            <div>
+              <h3 className='contentStyle '>2</h3>
+            </div>
+            <div>
+              <h3 className='contentStyle '>3</h3>
+            </div>
+          
+          </Carousel>
+        </Col>
+        <Col xs={24} md={16} className='col-formLogin'>
+          <Col xs={24} md={18} style={{padding:'20px'}}>
+            <div className='logo'></div>
+            <h4 style={{fontWeight:400}}>
+              <div style={{fontSize:'2rem'}}>Welcome back,</div>
+              <span style={{fontSize:'1.5rem'}} >
+              Please sign in to your account.
+              </span>
+            </h4>
+            <Divider/>
+            <div>
+              <Form layout={'vertical'} onFinish={onFinish}>
+                <Row>
+                  <Col xs={24} md={12} className='col-input-form-login'>
+                    <Form.Item name='username' label='Email'>
+                      <Input className='input-login ' placeholder='Email here...'/>
+                    </Form.Item>
+                  </Col>
+                  <Col xs={24} md={12}  className='col-input-form-login'>
+                  <Form.Item name='password' label='Password'>
+                      <Input  className='input-login' placeholder='Password here...'/>
 
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-         Đăng nhập
-        </Button>
-      </Form.Item>
-    </Form>
-        </div>
-    )
-}
+                    </Form.Item>
+                  </Col>
+                 
+                </Row>
+                <Row>
+                <Divider style={{margin:'0 0 10px 0'}}/>
+                </Row>
+                <Row >
+                  <Form.Item>
+                    <Button type='primary' style={{fontSize:'15px',fontWeight:500,borderRadius:'3px',background:'#545cd8'}}>Login</Button>
+                  </Form.Item>
+                </Row>
+              </Form>
+            </div>
+          </Col>
+          
+        </Col>
+      </Row>
+    </>
+  );
+};
 
-export default Login
+export default Login;

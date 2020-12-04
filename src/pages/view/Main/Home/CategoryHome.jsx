@@ -43,7 +43,7 @@ const CategoryHome = ({newProduct, onAddToCart}) => {
                 style={{
                   float: "right",
                   marginRight: "30px",
-                  background: "#3ac5c9",
+                  background: "#ed7100",
                 }}
               >
                 <span className='spanChiTietHome'>Xem chi tiết</span>

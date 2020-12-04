@@ -1,7 +1,7 @@
-import { Col, Modal, Row } from 'antd'
+import { Button, Col, Image, Modal, Row } from 'antd'
 import React, { useEffect, useState } from 'react'
 
-const InvoiceDetail = ({visible, handleOk, handleCancel,id}) => {
+const InvoiceDetail = ({visible, handleOk, handleCancel,handleChangeActive,id}) => {
     const [data,setData] = useState(null)
     useEffect(()=>{
       
@@ -11,7 +11,6 @@ const InvoiceDetail = ({visible, handleOk, handleCancel,id}) => {
             if(res.error) {
                 throw(res.error);
             }
-            
            setData(res.body)
             
             return res;
@@ -58,7 +57,23 @@ const InvoiceDetail = ({visible, handleOk, handleCancel,id}) => {
                  <p style={{width:'100%',margin:0,fontWeight:'bold'}}>Ghi chú</p>
                       <p> {data.invoiceInfo.description}</p>
                  </Row>
-                  
+                 <Row >
+                 <p style={{width:'100%',margin:0,fontWeight:'bold'}}>Tổng tiền</p>
+                      <p> {data.invoiceInfo.amountTotal}</p>
+                 </Row>
+                  <Row style={{paddingBottom:'5px'}}>
+                <Col span={12}>
+                  < div style={{}}>
+                <Button onClick={()=>handleChangeActive(id)} type='primary'>Nhận đơn hàng</Button>
+                </div>
+                </Col>
+                <Col span={12}>
+                  < div style={{padding:'0 10px'}}>
+                      <Button >Hủy đơn hàng</Button>
+                </div>
+                </Col>
+                 
+                  </Row>
                    </div>
                     
                 </Col>
@@ -85,7 +100,7 @@ const InvoiceDetail = ({visible, handleOk, handleCancel,id}) => {
                {data.cartProduct.map((item,index)=>(
                     <Row className="overItem" key={index}>
                     <Col md={4} className="itemBody">
-                      <img src={item.productInfo.image} style={{ width: "96px" }} />
+                      <Image src={item.productInfo.image} style={{ width: "96px" }} />
                     </Col>
                     <Col md={6} className="itemBody" style={{textAlign:'center'}}>
                       <span className="spanItemCartBody">
@@ -112,6 +127,7 @@ const InvoiceDetail = ({visible, handleOk, handleCancel,id}) => {
             </Row>
           </div>
                 </Col>
+                
             </Row>}
             {data===null&&<></  >}
           

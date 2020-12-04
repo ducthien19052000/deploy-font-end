@@ -1,8 +1,9 @@
 import { Col, Row, Steps } from 'antd';
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as userAction from '../../../../redux/Action/userAction';
+import CartCheckout from '../Cart/CartCheckout';
 import FirstStep from './FirstStep';
 import FourStep from './FourStep';
 import './index.css';
@@ -16,6 +17,12 @@ const { Step } = Steps;
 
 
 const Checkout = ({userAct,user}) => {
+  const [visible, setVisible] = useState(false);
+
+
+  const onClose = () => {
+    setVisible(false);
+  };
  
     const [current, setCurrent] = React.useState(0);
     
@@ -49,7 +56,11 @@ const Checkout = ({userAct,user}) => {
             <div className="steps-content">
             {getStepContent(current)}
                </div>
-            
+               {visible === true ? (
+                <CartCheckout visible={visible} onClose={onClose} />
+              ) : (
+                ""
+              )}
             </Col>
            
         </Row>

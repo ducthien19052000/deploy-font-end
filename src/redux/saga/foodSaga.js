@@ -29,8 +29,6 @@ function* fetchListFoodGroup(id) {
             headers: new Headers({
                 'Content-Type': 'application/json',
                 
-               
-
             }),
 
         })
@@ -49,7 +47,7 @@ function* SagaAddData(data){
             method: 'POST',
             headers: new Headers({
                 'Content-Type' : 'application/json',
-         
+                'Accept':'application/json'
             }),
             body: JSON.stringify(data.payload)
         })
@@ -66,8 +64,10 @@ function * SagaDeleteData(id){
         const requestDelete = yield fetch(`http://website-fpoly-food.herokuapp.com/product/${id.payload}`,{
             method: 'DELETE',
             headers: new Headers({
-                'Content-Type' : 'application/json'
+                "x-rapidapi-host": "website-fpoly-food.herokuapp.com",
                
+                'Content-Type' : 'application/json',
+                'Accept':'application/json'
 
                 
             })

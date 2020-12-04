@@ -1,15 +1,22 @@
-import { Button, Col, Form, Input, notification, Row, Select } from "antd";
+import { Button, Col, Form, notification, Row } from "antd";
 import confirm from "antd/lib/modal/confirm";
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { deleteAllCart } from "../../../../redux/Action/cartAction";
 import * as invoiceAction from "../../../../redux/Action/invoiceAction";
+import CartCheckout from "../Cart/CartCheckout";
 
-const FourStep = ({ current, setCurrent, steps, invoiceAct ,onDeletePrToCart}) => {
+const FourStep = ({
+  current,
+  setCurrent,
+  steps,
+  invoiceAct,
+  onDeletePrToCart,
+}) => {
   const dataLocal = localStorage.getItem("OrderDetail");
-  const history = useHistory()
+  const history = useHistory();
   const orderDetail = dataLocal !== null ? JSON.parse(dataLocal) : null;
   const data = {
     fullName: orderDetail.user.name,
@@ -17,9 +24,21 @@ const FourStep = ({ current, setCurrent, steps, invoiceAct ,onDeletePrToCart}) =
     deliveryAddress: orderDetail.user.deliveryAddress,
     description: orderDetail.user.description,
     paymentMethods: orderDetail.paymentMethods,
-    amountTotal:orderDetail.amountTotal
+    amountTotal: orderDetail.amountTotal,
+    phone: orderDetail.user.phone,
+    email: orderDetail.user.email,
   };
-  
+  const [visible, setVisible] = useState(false);
+ 
+ 
+  const showDrawer = () => {
+
+    setVisible(true);
+  };
+  const onClose = () => {
+    setVisible(false);
+  };
+
   const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 22 },
@@ -29,8 +48,8 @@ const FourStep = ({ current, setCurrent, steps, invoiceAct ,onDeletePrToCart}) =
   };
   const handleCheckout = (data) => {
     const { addData } = invoiceAct;
-    const cart =[];
-    console.log(data)
+    const cart = [];
+    console.log(data);
     confirm({
       title: "Bạn muốn đặt hàng?",
       content: "",
@@ -39,8 +58,8 @@ const FourStep = ({ current, setCurrent, steps, invoiceAct ,onDeletePrToCart}) =
       cancelText: "No",
       onOk() {
         addData(data);
-        onDeletePrToCart(cart)
-        history.push('/')
+        onDeletePrToCart(cart);
+        history.push("/");
         notification["success"]({
           message: "",
           duration: 2,
@@ -62,9 +81,8 @@ const FourStep = ({ current, setCurrent, steps, invoiceAct ,onDeletePrToCart}) =
   };
   return (
     <>
-        <Row className="row-checkout-profile-user" style={{ margin: 0 }}>
+      <Row className="row-checkout-profile-user" style={{ margin: 0 }}>
         <Form
-         
           style={{ width: "100%", display: "contents" }}
           {...layout}
           layout="vertical"
@@ -79,102 +97,99 @@ const FourStep = ({ current, setCurrent, steps, invoiceAct ,onDeletePrToCart}) =
               className="item-form"
               style={{ margin: 0 }}
               label="Họ và tên"
-              name='name'
-              
+              name="name"
             >
               <p style={{ fontSize: "14px", fontWeight: 400 }}>
-                    {orderDetail.user.name}
-                  </p>
-                
+                {orderDetail.user.name}
+              </p>
             </Form.Item>
 
             <Form.Item
               className="item-form"
               style={{ margin: 0 }}
               label="Email"
-              name='email'
-           
+              name="email"
             >
               <p style={{ fontSize: "14px", fontWeight: 400 }}>
-                    {orderDetail.user.email}
-                  </p>
+                {orderDetail.user.email}
+              </p>
             </Form.Item>
 
             <Form.Item
               className="item-form"
               style={{ margin: 0 }}
               label="Số điện thoại"
-              name='phone'
-             
+              name="phone"
             >
-             <p style={{ fontSize: "14px", fontWeight: 400 }}>
-                    {orderDetail.user.phone}
-                  </p>
+              <p style={{ fontSize: "14px", fontWeight: 400 }}>
+                {orderDetail.user.phone}
+              </p>
             </Form.Item>
           </Col>
           <Col xs={24} md={12} className="customerAddress">
-          <h1>Thông tin đơn hàng</h1>
-          <Form.Item
-                  className="item-form"
-                  style={{ margin: 0 }}
-                  label="Món ăn"
-                  name="name"
-                >
-                  <p style={{ fontSize: "14px", fontWeight: 400 }}>
-                    Số sản phẩm
-                  </p>
-                </Form.Item>
+            <h1>Thông tin đơn hàng</h1>
+            <Form.Item
+              className="item-form"
+              style={{ margin: 0 }}
+              label="Món ăn"
+              name="name"
+            >
+              <p style={{ fontSize: "14px", fontWeight: 400 }}>Số sản phẩm</p>
+            </Form.Item>
 
-                <Form.Item
-                  className="item-form"
-                  style={{ margin: 0 }}
-                  label="Chi phí"
-                  name="email"
-                >
-                  <p style={{ fontSize: "14px", fontWeight: 400 }}>
-                    {orderDetail.amountTotal} đ
-                  </p>
-                </Form.Item>
+            <Form.Item
+              className="item-form"
+              style={{ margin: 0 }}
+              label="Chi phí"
+              name="email"
+            >
+              <p style={{ fontSize: "14px", fontWeight: 400 }}>
+                {orderDetail.amountTotal} đ
+              </p>
+            </Form.Item>
 
-                <Form.Item
-                  className="item-form"
-                  style={{ margin: 0 }}
-                  label="Xem chi tiết đơn hàng"
-                  name="phone"
-                >
-                  <Button type="primary" >Chi tiết</Button>
-                </Form.Item>
+            <Form.Item
+              className="item-form"
+              style={{ margin: 0 }}
+              label="Xem chi tiết đơn hàng"
+              name="phone"
+            >
+              <Button type="primary"  onClick={showDrawer}>Chi tiết</Button>
+            </Form.Item>
           </Col>
 
           <div className="steps-action">
-      
-      <Row>
-      <Col xs={24} md={12}> 
-       {current > 0 && (
-         <div className='btnPre'>
-         <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
-         Trước
-       </Button>
-       </div>
-       )}
-       </Col>
-        <Col xs={24} md={12} style={{textAlign:'end'}} >
-      {current < steps.length - 1 && (
-         <Button type="primary" onClick={() => next()}>
-           Next
-         </Button>
-       )}
-       {current === steps.length - 1 && (
-         <Button type="primary" onClick={() => handleCheckout(data)}>
-           Thanh toán
-         </Button>
-       )}
-      </Col>
-      </Row>
-     </div>
+            <Row>
+              <Col xs={24} md={12}>
+                {current > 0 && (
+                  <div className="btnPre">
+                    <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
+                      Trước
+                    </Button>
+                  </div>
+                )}
+              </Col>
+              <Col xs={24} md={12} style={{ textAlign: "end" }}>
+                {current < steps.length - 1 && (
+                  <Button type="primary" onClick={() => next()}>
+                    Next
+                  </Button>
+                )}
+                {current === steps.length - 1 && (
+                  <Button type="primary" onClick={() => handleCheckout(data)}>
+                    Thanh toán
+                  </Button>
+                )}
+              </Col>
+            </Row>
+          </div>
         </Form>
+        {visible === true ? (
+                <CartCheckout visible={visible} onClose={onClose} />
+              ) : (
+                ""
+              )}
       </Row>
-
     </>
   );
 };

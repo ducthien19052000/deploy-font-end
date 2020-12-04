@@ -1,5 +1,5 @@
 import { DeleteFilled, EditFilled } from "@ant-design/icons";
-import { Button, Col, Row, Table } from "antd";
+import { Button, Col, Row, Table, Tooltip } from "antd";
 import Search from "antd/lib/input/Search";
 import React, { useCallback, useEffect, useState } from "react";
 import { connect } from "react-redux";
@@ -65,32 +65,49 @@ const Food = ({ foodAct, litsFoot, listGroup, categoryAct }) => {
     {
       title: "Tên món ăn",
       dataIndex: "productName",
+      fixed: 'left',
+      with: "10%",
       render: (text) => <span>{text}</span>,
     },
     {
       title: "Giá",
       dataIndex: "price",
+      with: "10%",
     },
     {
       title: "Ảnh",
       dataIndex: "image",
+      with: "10%",
       render: (text) => (
         <img style={{ height: "70px", width: "80px" }} src={text} />
       ),
     },
     {
-      title: "Mô tả",
-      dataIndex: "description",
-    },
-    {
       title: "Danh mục",
       dataIndex: "category",
+      with: "10%",
       render: (text) => <span>{text.categoryName}</span>,
     },
     {
+      title: "Mô tả",
+      dataIndex: "description",
+      with: "10%",
+      ellipsis: {
+        showTitle: false,
+      },
+      render: description => (
+        <Tooltip placement="topLeft" title={description}>
+          {description}
+        </Tooltip>
+      ),
+      
+    },
+  
+    {
       title: "",
       dataIndex: "",
-      with: "15%",
+      with: "10%",
+      fixed: 'right',
       key: "x",
       render: (text, record) => (
           <>
@@ -119,7 +136,7 @@ const Food = ({ foodAct, litsFoot, listGroup, categoryAct }) => {
         <Col xs={24} lg={24}>
           <Row className="top-content-food">
             <Col xs={24} lg={12} className="col-add-food">
-              <Button size="large" onClick={showModal}>
+              <Button size="large" type='primary' className='btn__addAdmin' onClick={showModal}>
                 Thêm món ăn
               </Button>
             </Col>
@@ -137,6 +154,7 @@ const Food = ({ foodAct, litsFoot, listGroup, categoryAct }) => {
               <Table
                 className="table-food-admin"
                 columns={columns}
+                scroll={{ x: '100vh' }}
                 expandable={{
                   expandedRowRender: (record) => (
                     <p style={{ margin: 0 }}>{record.name}</p>

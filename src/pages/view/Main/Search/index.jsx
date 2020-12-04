@@ -5,9 +5,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import {
-    addToCart,
-    removeToCart,
-    updateToCart
+  addToCart,
+  removeToCart,
+  updateToCart,
 } from "../../../../redux/Action/cartAction";
 import CartItem from "../Cart/cartItem";
 
@@ -17,7 +17,7 @@ const SearchComponent = ({
   onDeletePrToCart,
   onUpdatePrToCart,
 }) => {
-    let history = useHistory()
+  let history = useHistory();
   const onHandleRemoveCart = (product) => {
     onDeletePrToCart(product);
   };
@@ -39,22 +39,22 @@ const SearchComponent = ({
             <h2> Hãy nhập từ khóa</h2>
           </Row>
           <Row style={{ background: "#eeeeee" }}>
-            <Col span={8}>
-              <Row style={{ margin: "20px" }}></Row>
-            </Col>
-            <Col span={8} offset={8}>
-              <Row style={{ margin: "20px" }}>
-                <Col span={16} offset={8}>
-                  <Col>
-                    <Search
-                      placeholder="Tìm món ăn"
-                      enterButton
-                      onSearch={onSearch}
-                    />
-                  </Col>
-                </Col>
+            <Col span={8}></Col>
+            <Col xs={24} md={8}>
+              <Row style={{ margin: "20px",textAlign:'center' }}>
+                <span style={{width:'100%'}}>
+                  {" "}
+                  <Search
+                    placeholder="Tìm món ăn"
+                    enterButton
+                    size="large"
+                    onSearch={onSearch}
+                    style={{ width: "90%" }}
+                  />
+                </span>
               </Row>
             </Col>
+            <Col span={8}></Col>
           </Row>
 
           <Row>
@@ -96,14 +96,13 @@ const SearchComponent = ({
                     <span className="cart__price-total">Tổng giá</span>
 
                     <span className="cart__price-total" span={16}>
-                        
                       {showTotal(cart)} đ
                     </span>
                   </Row>
                   <Row className="cart__button">
-                  <Link to="/checkout" className="btn__label">
-                  Tiến hành đặt hàng
-                </Link>
+                    <Link to="/checkout" className="btn__label">
+                      Tiến hành đặt hàng
+                    </Link>
                   </Row>
                 </Col>
               </Row>

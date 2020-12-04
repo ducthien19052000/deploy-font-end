@@ -1,12 +1,18 @@
 import Search from "antd/lib/input/Search";
 import React from "react";
-import { BrowserRouter as Router, HashRouter, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  HashRouter,
+  Route,
+  Switch,
+} from "react-router-dom";
 import Main from "../pages/layout/Main";
 import MainAdmin from "../pages/layout/MainAdmin";
 import CategoryAdmin from "../pages/view/Admin/Category/index.jsx";
 import Dashboard from "../pages/view/Admin/Dasboard";
 import Food from "../pages/view/Admin/Food";
 import Invoice from "../pages/view/Admin/Invoice";
+import invoiceActive from "../pages/view/Admin/Invoice/invoiceActive";
 import Login from "../pages/view/Admin/Login";
 import Checkout from "../pages/view/Main/Checkout";
 import FoodDetail from "../pages/view/Main/FoodDetail";
@@ -15,7 +21,8 @@ import Product from "../pages/view/Main/Product";
 import Category from "../pages/view/Main/ProductCategory";
 import ProductSearch from "../pages/view/Main/ProductSearch";
 import Profile from "../pages/view/Main/Profile";
-import SearchComponent from '../pages/view/Main/Search/index'
+import ProfileInvoice from "../pages/view/Main/Profile/ProfileInvoice";
+import SearchComponent from "../pages/view/Main/Search/index";
 import OAuth2RedirectHandler from "../pages/view/Main/User/OAuth2/OAuth2RedirectHandler";
 import PrivateRoute from "./PrivateRouter";
 
@@ -35,11 +42,9 @@ const Routers = () => {
           <MainAdmin>
             <Switch>
               <Route path="/admin/" exact>
-               <Dashboard/>
-            
+                <Dashboard />
               </Route>
               <Route path="/admin/food" exact>
-                
                 <Food />
               </Route>
 
@@ -47,7 +52,13 @@ const Routers = () => {
                 <CategoryAdmin />
               </Route>
               <Route path="/admin/invoice">
-                <Invoice />
+                <Invoice>
+                  <Switch>
+                    <Route path="/admin/invoice/active">
+                      <invoiceActive />
+                    </Route>
+                  </Switch>
+                </Invoice>
               </Route>
             </Switch>
           </MainAdmin>
@@ -65,19 +76,21 @@ const Routers = () => {
               <Route path="/food/:id">
                 <FoodDetail />
               </Route>
-              <PrivateRoute
-                path="/profile"
-                component={Profile}
-              ></PrivateRoute>
+              <PrivateRoute path="/profile" component={Profile} exact></PrivateRoute>
               <PrivateRoute
                 path="/checkout"
                 component={Checkout}
               ></PrivateRoute>
+              <PrivateRoute
+                path="/profile/order"
+                component={ProfileInvoice}
+              ></PrivateRoute>
+
               <Route path="/category/:id">
                 <Category />
               </Route>
               <Route path="/search/" exact>
-                 <SearchComponent/>
+                <SearchComponent />
               </Route>
               <Route path="/search/:key">
                 <ProductSearch />

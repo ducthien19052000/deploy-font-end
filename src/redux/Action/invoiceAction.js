@@ -3,6 +3,10 @@ export const ActionType = {
     GET_INVOICE_DATA_SUCCESS: 'GET_INVOICE_DATA_SUCCESS',
     GET_INVOICE_DATA_ERROR: 'GET_INVOICE_DATA_ERROR',
 
+    GET_INVOICE_USER_DATA :'GET_INVOICE_USER_DATA',
+    GET_INVOICE_USER_DATA_SUCCESS: 'GET_INVOICE_USER_DATA_SUCCESS',
+    GET_INVOICE_USER_DATA_ERROR: 'GET_INVOICE_USER_DATA_ERROR',
+
     ADD_INVOICE_DATA: 'ADD_INVOICE_DATA',
     ADD_INVOICE_DATA_SUCCESS: 'ADD_INVOICE_DATA_SUCCESS',
     ADD_INVOICE_DATA_ERROR: 'ADD_INVOICE_DATA_ERROR',
@@ -34,6 +38,25 @@ export const getDataSuccess = (list) => {
 export const getDataError = (list) => {
     return {
         type: ActionType.GET_INVOICE_DATA_ERROR,
+        payload : list
+    }
+}
+
+export const getDataUser = (list) => {
+    return {
+        type: ActionType.GET_INVOICE_USER_DATA,
+        payload : list
+    }
+}
+export const getDataSuccessUser = (list) => {
+    return {
+        type: ActionType.GET_INVOICE_USER_DATA_SUCCESS,
+        payload : list
+    }
+}
+export const getDataErrorUser = (list) => {
+    return {
+        type: ActionType.GET_INVOICE_USER_DATA_ERROR,
         payload : list
     }
 }

@@ -3,7 +3,7 @@
     z-index: 1;
     width: 100%;
     vertical-align: center; */
-    background-color: #eb7100;
+    background:#ff7730 ;
    
 }
 .logo-main{
@@ -13,7 +13,7 @@
 .menu-main{
     width: 70%;
     float: left;
-    background: #eb7100 !important;
+    background:  #ff7730!important;
    font-size: 1.6rem;
     font-weight: 600;
     color: #fff !important;

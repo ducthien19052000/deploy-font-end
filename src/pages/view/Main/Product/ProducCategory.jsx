@@ -54,7 +54,7 @@ if(litsFoot){
     
     <div>
       {!category&&<Loading/>}
-      {category&&
+      {product.length!==0&&
       <Row className="row-food-all" style={{ margin: '0 0 20px 0' }}>
       <Col span={24}>
         <Row>

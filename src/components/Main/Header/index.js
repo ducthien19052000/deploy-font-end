@@ -26,7 +26,9 @@ const Header = ({ listGroup, foodAct }) => {
   const onHandleLogout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("authenticated");
+    
     setAuthenticated(false);
+    history.push('/')
   };
   const handleLogin = () => {
     setAuthenticated(true);
@@ -48,7 +50,7 @@ const Header = ({ listGroup, foodAct }) => {
   const menuUser = (
     <Menu>
       <Menu.Item>
-        <Link to='/profile' target="_blank" rel="noopener noreferrer" href="http://www.alipay.com/">
+        <Link to='/profile'>
           Tài khoản
         </Link>
       </Menu.Item>

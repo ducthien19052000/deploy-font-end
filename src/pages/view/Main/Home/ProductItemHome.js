@@ -37,7 +37,7 @@ function ProductItemHome({ product, onAddToCart }) {
               onClick={() => onAddToCart(product, 1,[])}
             >
               {" "}
-              <FaCartPlus size={20} />
+              <FaCartPlus size={30} style={{color:'#ed7100'}} />
             </span>
           </Row>
         </div>

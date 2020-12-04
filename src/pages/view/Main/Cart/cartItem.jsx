@@ -45,7 +45,7 @@ const CartItem = ({item,onHandleRemoveCart,onUpdatePrToCart}) => {
                         </Row>
                         <Row style={{ margin: 0 }}>
                         <span className='span-detail-item'  onClick={()=>showModal(item)}>
-                        <EyeOutlined />
+                       
                         </span>
                         </Row>
                       
@@ -63,7 +63,7 @@ const CartItem = ({item,onHandleRemoveCart,onUpdatePrToCart}) => {
                             style={{ background: "none", border: "none" }}
                           >
                             {" "}
-                            <EditTwoTone />
+                            <EyeOutlined />
                           </Button>
                           <Button
                             onClick={() => onHandleRemoveCart(item.product,item.topping)}

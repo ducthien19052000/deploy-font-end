@@ -120,9 +120,9 @@ const Home = ({
             </Badge>
 
             <div className="carousel-home" style={{ margin: "0 auto" }}>
-              <Image
+              <img
                 disabled
-                style={{ width: "100%" }}
+                style={{ height:'350px',width:'100%'}}
                 src="https://rawcdn.githack.com/0967517236/imag-datn/0fc6d18e91b5f33324b6a1824756dece21d71b8e/img-carousel-home.JPG"
               />
             </div>

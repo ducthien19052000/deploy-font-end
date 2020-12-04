@@ -27,17 +27,20 @@ const Category = ({ categoryAct, listGroup }) => {
       title: "Tên thể loại",
       dataIndex: "categoryName",
       render: (text) => <span>{text}</span>,
+      
     },
     {
       title: "Ảnh",
       dataIndex: "image",
       render: (text) => <img style={{ height: "70px", width: "80px" }} src={text}/>,
     },
+     
  
     {
       title: "",
       dataIndex: "",
-      with: "15%",
+      with: 3,
+    
       key: "x",
       render: (text, record) => (
         <>
@@ -64,7 +67,7 @@ const Category = ({ categoryAct, listGroup }) => {
         <Col xs={24} lg={24}>
           <Row className="top-content-food">
             <Col xs={24} lg={12} className="col-add-food">
-              <Button size="large">Thêm danh mục</Button>
+              <Button size="large"  type='primary'>Thêm danh mục</Button>
             </Col>
             <Col span={6}></Col>
             <Col xs={24} lg={5} className="col-search-food">
@@ -80,6 +83,7 @@ const Category = ({ categoryAct, listGroup }) => {
               <Table
                 className="table-food-admin"
                 columns={columns}
+                scroll={{ x: '100vh' }}
                 expandable={{
                   expandedRowRender: (record) => (
                     <p style={{ margin: 0 }}>{record.name}</p>

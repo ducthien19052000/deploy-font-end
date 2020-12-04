@@ -212,6 +212,12 @@ console.log('hakjhsdkja')
       ,
     },
   ];
+  const rowSelection = {
+    onChange: (selectedRowKeys, selectedRows) => {
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
+    },
+  };
+ 
 
   return (
     <>
@@ -242,10 +248,10 @@ console.log('hakjhsdkja')
                 style={{ backgroundImage: `url(${foodDetail.image})` }}
               ></div>
               <div className="itemDetailImgListWrapped">
-                <img className="itemDetailImg" src={foodDetail.image} />
-                <img className="itemDetailImg" src={foodDetail.image} />
-                <img className="itemDetailImg" src={foodDetail.image} />
-                <img className="itemDetailImg" src={foodDetail.image} />
+                <image className="itemDetailImg" src={foodDetail.image} />
+                <image className="itemDetailImg" src={foodDetail.image} />
+                <image className="itemDetailImg" src={foodDetail.image} />
+                <image className="itemDetailImg" src={foodDetail.image} />
               </div>
             </Col>
             <Col xs={24} md={9} className="colInfoDetailItem">
@@ -270,10 +276,15 @@ console.log('hakjhsdkja')
                   <Row className="tableTopping">
                     <Col span={24}>
                       <Table
+                      rowSelection={{
+                        type: 'checkbox',
+                        ...rowSelection,
+                      }}
                         columns={columns}
                         dataSource={foodDetail.toppingList}
                         pagination={false}
                         scroll={{ y: 200 }}
+                      z
                       />
                     </Col>
                   </Row>
