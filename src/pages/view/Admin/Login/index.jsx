@@ -45,7 +45,7 @@ const Login = () => {
                   </Col>
                   <Col xs={24} md={12}  className='col-input-form-login'>
                   <Form.Item name='password' label='Password'>
-                      <Input  className='input-login' placeholder='Password here...'/>
+                      <Input.Password value='' className='input-login' placeholder='Password here...'/>
 
                     </Form.Item>
                   </Col>
