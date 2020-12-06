@@ -6,7 +6,7 @@ const Footer = () => {
     const {  Footer } = Layout;
     return (
         <>
-             <Footer className='footer-admin' >Ant Design ©2018 Created by Ant UED</Footer>
+             <Footer className='footer-admin' >FPoly Food Created by Fpoly Group</Footer>
         </>
     )
 }

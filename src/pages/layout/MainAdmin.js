@@ -21,7 +21,7 @@ const MainAdmin = ({children}) => {
             <Header/>
         
           <Content
-            style={{ margin: '16px' ,minHeight:'75vh'}}
+            style={{ margin: '16px' ,minHeight:'75vh',marginBottom:'30px'}}
            
           >
               {children}
